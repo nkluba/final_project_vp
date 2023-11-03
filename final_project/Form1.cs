@@ -19,6 +19,12 @@ namespace final_project
             chartMoods.Annotations.Clear();
         }
 
+        private void ShowFileConfigForm()
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+        }
+
         private List<MoodData> moodDataList = new List<MoodData>();
 
         private string GetSelectedMood()
@@ -79,11 +85,13 @@ namespace final_project
             DateTime selectedDate = dateTimePicker1.Value;
             string moodData = $"{selectedDate.ToShortDateString()},{selectedMood}";
 
-            string csvFilePath = "C:\\Users\\ustinova\\Documents\\your_mood_data.csv";
+            string csvFilePath = "your_mood_data.csv";
 
-            if (!File.Exists(csvFilePath))
+            if ((!File.Exists("config.txt") | (!File.Exists("config.txt"))))
             {
-                CreateCsvFileWithHeaders(csvFilePath);
+                MessageBox.Show("The CSV file doesn't exist or path to it is set uncorrectly. Please set the file path and name.", "File Not Found");
+                ShowFileConfigForm();
+                return;
             }
 
             if (!DateExistsInCsv(selectedDate, csvFilePath))
