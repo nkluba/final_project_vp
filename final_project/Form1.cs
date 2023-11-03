@@ -126,6 +126,8 @@ namespace final_project
             chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(3.5, 2.5, "Normal");
             chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(4.5, 3.5, "Good");
             chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(5.5, 4.5, "Amazing");
+
+            chartMoods.ChartAreas[0].AxisX.LabelStyle.Angle = -90;
         }
 
         private void button2_Click(object sender, EventArgs e)
