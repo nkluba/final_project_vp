@@ -89,7 +89,9 @@ namespace final_project
             Series series = new Series("Mood Data")
             {
                 ChartType = SeriesChartType.Line,
-                XValueType = ChartValueType.Date
+                XValueType = ChartValueType.Date,
+                Color = System.Drawing.Color.Pink,
+                BorderWidth = 4,
             };
 
             foreach (var data in moodDataList)
