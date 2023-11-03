@@ -110,15 +110,6 @@ namespace final_project
             }
         }
 
-        private void CreateCsvFileWithHeaders(string filePath)
-        {
-            using (StreamWriter sw = new StreamWriter(filePath, true))
-            {
-                sw.WriteLine("Date,Mood");
-                sw.Close();
-            }
-        }
-
         private void PlotMoodData()
         {
             chartMoods.Series.Clear();
