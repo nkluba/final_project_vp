@@ -126,11 +126,11 @@ namespace final_project
             }
 
             // Set custom y-axis labels
-            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(1.5, 5.5, "Terrible");
-            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(2.5, 4.5, "Bad");
-            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(3.5, 3.5, "Normal");
-            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(4.5, 2.5, "Good");
-            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(5.5, 1.5, "Amazing");
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(1.5, 0.5, "Terrible");
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(2.5, 1.5, "Bad");
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(3.5, 2.5, "Normal");
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(4.5, 3.5, "Good");
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(5.5, 4.5, "Amazing");
         }
 
         private void button2_Click(object sender, EventArgs e)
