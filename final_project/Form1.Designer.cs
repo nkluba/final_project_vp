@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.rbAmazing = new System.Windows.Forms.RadioButton();
             this.rbGood = new System.Windows.Forms.RadioButton();
             this.rbNormal = new System.Windows.Forms.RadioButton();
@@ -112,14 +112,14 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(6, 186);
+            this.dateTimePicker1.Location = new System.Drawing.Point(6, 203);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(185, 20);
             this.dateTimePicker1.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(53, 221);
+            this.button1.Location = new System.Drawing.Point(53, 245);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 23);
             this.button1.TabIndex = 6;
@@ -137,35 +137,36 @@
             this.groupBox1.Controls.Add(this.rbNormal);
             this.groupBox1.Controls.Add(this.rbGood);
             this.groupBox1.Controls.Add(this.rbAmazing);
-            this.groupBox1.Location = new System.Drawing.Point(25, 29);
+            this.groupBox1.Location = new System.Drawing.Point(43, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(199, 267);
+            this.groupBox1.Size = new System.Drawing.Size(199, 284);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(476, 263);
+            this.button2.Location = new System.Drawing.Point(472, 273);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(137, 23);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Text = "View statistics";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // chartMoods
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartMoods.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartMoods.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartMoods.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartMoods.Legends.Add(legend2);
             this.chartMoods.Location = new System.Drawing.Point(302, 12);
             this.chartMoods.Name = "chartMoods";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartMoods.Series.Add(series1);
-            this.chartMoods.Size = new System.Drawing.Size(449, 223);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartMoods.Series.Add(series2);
+            this.chartMoods.Size = new System.Drawing.Size(449, 255);
             this.chartMoods.TabIndex = 2;
             this.chartMoods.Text = "chart1";
             // 
@@ -173,12 +174,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 332);
+            this.ClientSize = new System.Drawing.Size(800, 318);
             this.Controls.Add(this.chartMoods);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Mood Tracker";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartMoods)).EndInit();

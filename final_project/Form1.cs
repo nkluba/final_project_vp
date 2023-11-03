@@ -135,6 +135,11 @@ namespace final_project
             ReadCsvData();
             PlotMoodData();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
     public class MoodData
     {
