@@ -92,17 +92,44 @@ namespace final_project
                 var moodDataForMood = moodDataList.Where(m => m.Mood == mood).ToList();
                 Series series = new Series(mood)
                 {
-                    ChartType = SeriesChartType.Line,
+                    ChartType = SeriesChartType.Point, // Change to Point
                     XValueType = ChartValueType.Date
                 };
 
                 foreach (var data in moodDataForMood)
                 {
-                    series.Points.AddXY(data.Date, 1);
+                    int yValue = 0;
+                    switch (data.Mood)
+                    {
+                        case "Amazing":
+                            yValue = 5;
+                            break;
+                        case "Good":
+                            yValue = 4;
+                            break;
+                        case "Normal":
+                            yValue = 3;
+                            break;
+                        case "Bad":
+                            yValue = 2;
+                            break;
+                        case "Terrible":
+                            yValue = 1;
+                            break;
+                    }
+
+                    series.Points.AddXY(data.Date, yValue);
                 }
 
                 chartMoods.Series.Add(series);
             }
+
+            // Set custom y-axis labels
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(1.5, 5.5, "Terrible");
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(2.5, 4.5, "Bad");
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(3.5, 3.5, "Normal");
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(4.5, 2.5, "Good");
+            chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(5.5, 1.5, "Amazing");
         }
 
         private void button2_Click(object sender, EventArgs e)
