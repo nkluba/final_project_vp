@@ -86,46 +86,39 @@ namespace final_project
         {
             chartMoods.Series.Clear();
 
-            var uniqueMoods = moodDataList.Select(m => m.Mood).Distinct().ToList();
-
-            foreach (var mood in uniqueMoods)
+            Series series = new Series("Mood Data")
             {
-                var moodDataForMood = moodDataList.Where(m => m.Mood == mood).ToList();
-                Series series = new Series(mood)
-                {
-                    ChartType = SeriesChartType.Point, // Change to Point
-                    XValueType = ChartValueType.Date
-                };
+                ChartType = SeriesChartType.Line,
+                XValueType = ChartValueType.Date
+            };
 
-                foreach (var data in moodDataForMood)
+            foreach (var data in moodDataList)
+            {
+                int yValue = 0;
+                switch (data.Mood)
                 {
-                    int yValue = 0;
-                    switch (data.Mood)
-                    {
-                        case "Amazing":
-                            yValue = 5;
-                            break;
-                        case "Good":
-                            yValue = 4;
-                            break;
-                        case "Normal":
-                            yValue = 3;
-                            break;
-                        case "Bad":
-                            yValue = 2;
-                            break;
-                        case "Terrible":
-                            yValue = 1;
-                            break;
-                    }
-
-                    series.Points.AddXY(data.Date, yValue);
+                    case "Amazing":
+                        yValue = 5;
+                        break;
+                    case "Good":
+                        yValue = 4;
+                        break;
+                    case "Normal":
+                        yValue = 3;
+                        break;
+                    case "Bad":
+                        yValue = 2;
+                        break;
+                    case "Terrible":
+                        yValue = 1;
+                        break;
                 }
 
-                chartMoods.Series.Add(series);
+                series.Points.AddXY(data.Date, yValue);
             }
 
-            // Set custom y-axis labels
+            chartMoods.Series.Add(series);
+
             chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(1.5, 0.5, "Terrible");
             chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(2.5, 1.5, "Bad");
             chartMoods.ChartAreas[0].AxisY.CustomLabels.Add(3.5, 2.5, "Normal");
