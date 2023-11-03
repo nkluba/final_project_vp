@@ -15,6 +15,8 @@ namespace final_project
         public Form1()
         {
             InitializeComponent();
+            chartMoods.Series.Clear();
+            chartMoods.Annotations.Clear();
         }
 
         private List<MoodData> moodDataList = new List<MoodData>();
@@ -51,6 +53,26 @@ namespace final_project
             }
         }
 
+        private bool DateExistsInCsv(DateTime selectedDate, string csvFilePath)
+        {
+            if (File.Exists(csvFilePath))
+            {
+                string[] lines = File.ReadAllLines(csvFilePath);
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(',');
+                    if (parts.Length >= 1)
+                    {
+                        if (DateTime.TryParse(parts[0], out DateTime existingDate) && existingDate.Date == selectedDate.Date)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string selectedMood = GetSelectedMood();
@@ -64,13 +86,20 @@ namespace final_project
                 CreateCsvFileWithHeaders(csvFilePath);
             }
 
-            using (StreamWriter sw = new StreamWriter(csvFilePath, true))
+            if (!DateExistsInCsv(selectedDate, csvFilePath))
             {
-                sw.WriteLine(moodData);
-                sw.Close();
-            }
+                using (StreamWriter sw = new StreamWriter(csvFilePath, true))
+                {
+                    sw.WriteLine(moodData);
+                    sw.Close();
+                }
 
-            MessageBox.Show("Mood data added to the database.", "Success");
+                MessageBox.Show("Mood data added to the database.", "Success");
+            }
+            else
+            {
+                MessageBox.Show("This date already exists in the database.", "Duplicate Date");
+            }
         }
 
         private void CreateCsvFileWithHeaders(string filePath)
