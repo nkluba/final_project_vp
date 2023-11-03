@@ -39,8 +39,14 @@ namespace final_project
                     textBox1.Text = openFileDialog.FileName;
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             File.WriteAllText("config.txt", textBox1.Text);
             CreateCsvFileWithHeaders(textBox1.Text);
+            Form2 form2 = new Form2();
+            form2.Close();
         }
     }
 }

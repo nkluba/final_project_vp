@@ -46,16 +46,21 @@ namespace final_project
         {
             moodDataList.Clear();
 
-            string csvFilePath = "C:\\Users\\ustinova\\Documents\\your_mood_data.csv";
-
-            if (File.Exists(csvFilePath))
+            if (File.Exists("config.txt"))
             {
+                string csvFilePath = File.ReadAllText("config.txt");
                 using (var reader = new StreamReader(csvFilePath))
                 using (var csv = new CsvReader(reader, new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)))
                 {
                     moodDataList = csv.GetRecords<MoodData>().ToList();
                     moodDataList = moodDataList.OrderBy(data => data.Date).ToList();
                 }
+            }
+            else
+            {
+                MessageBox.Show("The CSV file doesn't exist or path to it is set uncorrectly. Please set the file path and name.", "File Not Found");
+                ShowFileConfigForm();
+                return;
             }
         }
 
@@ -85,28 +90,31 @@ namespace final_project
             DateTime selectedDate = dateTimePicker1.Value;
             string moodData = $"{selectedDate.ToShortDateString()},{selectedMood}";
 
-            string csvFilePath = "your_mood_data.csv";
-
-            if ((!File.Exists("config.txt") | (!File.Exists("config.txt"))))
+            if (!File.Exists("config.txt") || (!File.Exists(File.ReadAllText("config.txt"))))
             {
                 MessageBox.Show("The CSV file doesn't exist or path to it is set uncorrectly. Please set the file path and name.", "File Not Found");
                 ShowFileConfigForm();
                 return;
             }
 
-            if (!DateExistsInCsv(selectedDate, csvFilePath))
-            {
-                using (StreamWriter sw = new StreamWriter(csvFilePath, true))
-                {
-                    sw.WriteLine(moodData);
-                    sw.Close();
-                }
-
-                MessageBox.Show("Mood data added to the database.", "Success");
-            }
             else
             {
-                MessageBox.Show("This date already exists in the database.", "Duplicate Date");
+                string csvFilePath = File.ReadAllText("config.txt");
+
+                if (!DateExistsInCsv(selectedDate, csvFilePath))
+                {
+                    using (StreamWriter sw = new StreamWriter(csvFilePath, true))
+                    {
+                        sw.WriteLine(moodData);
+                        sw.Close();
+                    }
+
+                    MessageBox.Show("Mood data added to the database.", "Success");
+                }
+                else
+                {
+                    MessageBox.Show("This date already exists in the database.", "Duplicate Date");
+                }
             }
         }
 
