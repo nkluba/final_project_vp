@@ -46,6 +46,7 @@ namespace final_project
                 using (var csv = new CsvReader(reader, new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)))
                 {
                     moodDataList = csv.GetRecords<MoodData>().ToList();
+                    moodDataList = moodDataList.OrderBy(data => data.Date).ToList();
                 }
             }
         }
